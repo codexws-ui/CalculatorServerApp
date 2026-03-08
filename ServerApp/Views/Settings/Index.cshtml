@@ -1,0 +1,30 @@
+﻿@model Settings
+
+@{
+    ViewData["Title"] = "Settings";
+
+    IEnumerable<SelectListItem> operations = Html.GetEnumSelectList<OperationType>();
+    string[] selectedOperations = Model.SelectedOperations?.Split(',') ?? [];
+}
+
+<h1 class="text-dark">@ViewData["Title"]</h1>
+
+<div class="bg-light" style="border-style: solid; border-width: thin; border-radius: 10px; border-color: #cccccc; padding: 10px; margin: 20px 0px;">
+    <form asp-action="Update" asp-controller="Settings" asp-antiforgery="true" id="FormSettings" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="control-group">
+            @foreach (var operation in operations)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" checked="@selectedOperations.Contains(operation.Value)" value="@operation.Value" id="@operation.Value" name="operations" />
+                    <label class="form-check-label" for="@operation.Value">@operation.Text</label>
+                </div>
+            }
+        </div>
+
+        <div class="control-group mt-3">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+</div>

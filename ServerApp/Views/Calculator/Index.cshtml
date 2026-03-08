@@ -1,0 +1,60 @@
+﻿@model Calculator
+
+@{
+    ViewData["Title"] = "Calculator";
+
+    Settings settings = (Settings)ViewBag.Settings!;
+
+    string[] selectedOperations = settings.SelectedOperations?.Split(',') ?? [];
+
+    var operations = Html.GetEnumSelectList<OperationType>().Where(o => selectedOperations.Contains(o.Value));
+}
+
+<h1 class="text-dark">@ViewData["Title"]</h1>
+
+<div class="bg-light" style="border-style: solid; border-width: thin; border-radius: 10px; border-color: #cccccc; padding: 10px; margin: 20px 0px;">
+    <form asp-action="Calculate" asp-controller="Calculator" asp-antiforgery="true" id="FormCalculator" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="row">
+            <div class="control-group col-md-4">
+                <label asp-for="ValueA" class="form-label"></label>
+                <input asp-for="ValueA" class="form-control" />
+                @Html.ValidationMessageFor(m => m.ValueA, "", new { @class = "text-danger" })
+            </div>
+            <div class="control-group col-md-4">
+                <label asp-for="Operation" class="form-label"></label>
+                &mdash;
+                <a asp-controller="Settings" asp-action="Index">Add/Remove</a>
+                <select asp-for="Operation" asp-items="@operations" class="form-select">
+                    <option value="0"></option>
+                </select>
+                @Html.ValidationMessageFor(m => m.Operation, "", new { @class = "text-danger" })
+            </div>
+            <div class="control-group col-md-4">
+                <label asp-for="ValueB" class="form-label"></label>
+                <input asp-for="ValueB" class="form-control" />
+                @Html.ValidationMessageFor(m => m.ValueB, "", new { @class = "text-danger" })
+            </div>
+            <div class="control-group col-12">
+                <label asp-for="Result" class="form-label"></label>
+                <textarea asp-for="Result" rows="5" class="form-control border-0" dir="ltr"></textarea>
+                @Html.ValidationMessageFor(m => m.Result, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="control-group mt-3">
+            <button type="submit" class="btn btn-primary">Calculate</button>
+            <button type="button" class="btn btn-outline-secondary" onclick="Reset();">Reset</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function Reset() {
+        document.getElementById("ValueA").value = "";
+        document.getElementById("ValueB").value = "";
+        document.getElementById("Result").value = "";
+        document.getElementById("Operation").value = 0;
+    }
+</script>
