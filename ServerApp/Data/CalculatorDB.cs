@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ServerApp.Models;
 
 /*
-Add-Migration "CalculatorDB_00001"
+Add-Migration "CalculatorDB_00002"
 Update-Database
 */
 

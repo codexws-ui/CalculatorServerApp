@@ -9,6 +9,5 @@ namespace ServerApp.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public required string Id { get; set; }
         public string? SelectedOperations { get; set; }
-        public bool IsSpaceOnConcatenation { get; set; }
     }
 }
