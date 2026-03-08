@@ -13,3 +13,7 @@ Small Razor Pages web application (ASP.NET Core MVC, .NET 8) that provides a cal
   1. Open the solution in Visual Studio 2022.
   2. Ensure the `ServerApp` project is the startup project.
   3. Press F5 or use __Debug > Start Debugging__ to run with IIS Express, or __Run > Start Without Debugging__ (Ctrl+F5).
+
+## Database SQL Server (SSMS 19.3.4.0)
+
+Database backup file in the project folder: ServerApp/Data/Backup/CalculatorDB.bak
