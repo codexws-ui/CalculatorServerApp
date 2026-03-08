@@ -1,6 +1,37 @@
-﻿namespace ServerApp
-{
-    public class _
-    {
-    }
-}
+﻿# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build outputs
+bin/
+obj/
+
+# Rider
+.idea/
+
+# NuGet
+*.nupkg
+packages/
+
+# Visual Studio Code
+.vscode/
+
+# Dotnet
+*.db
+*.sqlite
+appsettings.*.json
+secrets.json
+*.dotCover
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# IIS Express
+/.vs/config/
